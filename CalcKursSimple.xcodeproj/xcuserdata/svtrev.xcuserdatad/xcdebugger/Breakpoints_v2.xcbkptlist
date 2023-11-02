@@ -14,9 +14,9 @@
             filePath = "CalcKursSimple/main.c"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "Calc()"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "Simple(str)"
             landmarkType = "9">
             <Locations>
                <Location
@@ -245,9 +245,9 @@
             filePath = "CalcKursSimple/main.c"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
-            landmarkName = "Simple(str)"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
+            landmarkName = "Hard(str, buf)"
             landmarkType = "9">
             <Locations>
                <Location
@@ -323,8 +323,8 @@
             filePath = "CalcKursSimple/main.c"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "119"
-            endingLineNumber = "119"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "Calc()"
             landmarkType = "9">
          </BreakpointContent>
@@ -339,8 +339,8 @@
             filePath = "CalcKursSimple/main.c"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "121"
-            endingLineNumber = "121"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "Calc()"
             landmarkType = "9">
             <Locations>

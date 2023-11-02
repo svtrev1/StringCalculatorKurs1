@@ -102,6 +102,7 @@ void Calc(void)
                 m = -1;
                 printf("Error input\nYou can use only: + - * / ^\n");
                 break;
+                
         }
         if (m == -1)
             printf("The last result = %lg", result);
