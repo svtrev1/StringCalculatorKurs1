@@ -29,10 +29,21 @@ int main(void)
 void Calc(void)
 {
     char str[100];
-    double operand, operand2;
+    double operand = 0, operand2 = 0;
     long int s;
     int m = 0;
+    int minus = 0;
     fgets(str, sizeof(str), stdin);
+//    for (int i1 = 0; i1 < 100; i1++)
+//    {
+//        if (str[i1] == ' ')
+//        {
+//            for (int i2 = i1; i2 < 100; i2++)
+//                str[i2] = str[i2+1];
+//            i--;
+//        }
+//    }
+//    printf("str = %s", str);
     if (str[0] == 'h')
         print();
     else if (str[0] >= '0' && str[0] <= '9')
@@ -41,9 +52,26 @@ void Calc(void)
         s = ((strchr(arr1, str[i])) - arr1);
         g = 0;
         i++;
-        operand2 = Simple(str);
-        if (g == 0)
+        if (str[i] < '0' && str[i] > 9 && str[i] != '-')
             s = -1;
+        else
+        {
+            if (str[i] == '0')
+                operand2 = 0;
+            else
+            {
+                if (str[i] == '-')
+                {
+                    i++;
+                    minus = 1;
+                }
+                operand2 = Simple(str);
+                if (g == 0)
+                    s = -2;
+                if (minus)
+                    operand2 *= -1;
+            }
+        }
         switch(s)
         {
             case 0:
@@ -64,6 +92,10 @@ void Calc(void)
             case -1:
                 m = -1;
                 printf("Error input\nYou can use only: + - * / ^\n");
+                break;
+            case -2:
+                m = -1;
+                printf("Error input in second operand\n");
                 break;
         }
         if (m == -1)
@@ -74,13 +106,37 @@ void Calc(void)
     }
     else if (str[0] == '+' || str[0] == '-' || str[0] == '/' || str[0] == '*' || str[0] == '^')
     {
-        operand = result;
+        if (str[1] >= '0' && str[1] <= '9')
+        {
+            i++;
+            operand = Simple(str);
+            operand *= -1;
+        }
+        else
+            operand = result;
         s = ((strchr(arr1, str[i])) - arr1);
         g = 0;
         i++;
-        operand2 = Simple(str);
-        if (g == 0)
+        if (str[i] < '0' && str[i] > 9 && str[i] != '-')
             s = -1;
+        else
+        {
+            if (str[i] == '0')
+                operand2 = 0;
+            else
+            {
+                if (str[i] == '-')
+                {
+                    i++;
+                    minus = 1;
+                }
+                operand2 = Simple(str);
+                if (g == 0)
+                    s = -2;
+                if (minus)
+                    operand2 *= -1;
+            }
+        }
         switch(s)
         {
             case 0:
@@ -102,7 +158,6 @@ void Calc(void)
                 m = -1;
                 printf("Error input\nYou can use only: + - * / ^\n");
                 break;
-                
         }
         if (m == -1)
             printf("The last result = %lg", result);
@@ -111,22 +166,63 @@ void Calc(void)
     }
     else
     {
-        char *buf;
-        buf = (char *)malloc(sizeof(char)*7);
-        Hard(str, &buf);
-        i++;
-        if (str[i] == ')')
-            operand = result;
-        else
-            operand = Simple(str);
-        for (int k = 0; k < 10; k++)
+        int k, c = 0, m1 = 0;
+        for(k = 0; k < 100; k++)
         {
-            if (strcmp(buf, arr2[k]) == 0)
+            if (str[k] == '(')
+                c = 1;
+        }
+        if (c == 0)
+            m = -2;
+        else
+        {
+            m = -1;
+            char *buf;
+            buf = (char *)malloc(sizeof(char)*7);
+            Hard(str, &buf);
+            i++;
+            if (str[i] == ')')
+                operand = result;
+            else
             {
-                m = k;
-                break;
+                if (str[i] == '-')
+                {
+                    for (k = 0; k < 10; k++)
+                    {
+                        if (strcmp(buf, arr2[k]) == 0)
+                        {
+                            m = k;
+                            break;
+                        }
+                    }
+                    if (m == 0 || m == 1)
+                        m1 = -3;
+                    else
+                        m = -1;
+                    if (str[i+1] >= '0' && str[i+1] <= '9')
+                    {
+                        i++;
+                        operand = Simple(str) * -1;
+                        c = 0;
+                    }
+                    else if(str[i+2] < '0' && str[i+2] > '9')
+                        m = -2;
+                        
+                }
+                if (c != 0)
+                    operand = Simple(str);
+            }
+            for (k = 0; k < 10; k++)
+            {
+                if (strcmp(buf, arr2[k]) == 0)
+                {
+                    m = k;
+                    break;
+                }
             }
         }
+        if (m1 == -3)
+            m = -3;
         switch(m)
         {
             case 0:
@@ -168,7 +264,16 @@ void Calc(void)
                 result = atan(M_PI/2 -operand);
                 break;
             case -1:
-                printf("Error input\nYou can use only: sqrt2 sqrt3 sin cos tg ctg asin acos atg actg\n");
+                m = -1;
+                printf("Error input!\nYou can use only: sqrt2 sqrt3 sin cos tg ctg asin acos atg actg\n");
+                break;
+            case -2:
+                m = -1;
+                printf("Error input in first operand\n");
+                break;
+            case -3:
+                m = -1;
+                printf("Error input!\nYou can not use x < 0 in sqrt2, sqrt3\n");
                 break;
         }
         if (m == -1)
@@ -246,10 +351,6 @@ void print(void)
         printf("The last result = %lg", result);
 }
 
-void Error(void)
-{
-    
-}
 
 
       //x+y;
