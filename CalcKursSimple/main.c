@@ -9,7 +9,6 @@ char arr2[10][6] = {"sqrt2", "sqrt3", "sin", "cos", "tg", "ctg", "asin",
 
 int i = 0;
 double result;
-int g = 0;
 
 double Simple(char *str);
 void Hard(char *str, char **buf);
@@ -28,50 +27,42 @@ int main(void)
 
 void Calc(void)
 {
-    char str[100];
+    char str[100], z;
     double operand = 0, operand2 = 0;
     long int s;
-    int m = 0;
-    int minus = 0;
-    fgets(str, sizeof(str), stdin);
-//    for (int i1 = 0; i1 < 100; i1++)
-//    {
-//        if (str[i1] == ' ')
-//        {
-//            for (int i2 = i1; i2 < 100; i2++)
-//                str[i2] = str[i2+1];
-//            i--;
-//        }
-//    }
-//    printf("str = %s", str);
+    int m = 0, z1 = 0;
+    while ((z = getchar()) != '\n') //очистка проблем
+    {
+        if (z != ' ')
+        {
+            str[z1] = z;
+            z1++;
+        }
+    }
+    str[z1] = '\0';
     if (str[0] == 'h')
         print();
-    else if (str[0] >= '0' && str[0] <= '9')
+    else if (str[0] >= '0' && str[0] <= '9') //x_x
     {
-        operand = Simple(str);
-        s = ((strchr(arr1, str[i])) - arr1);
-        g = 0;
+        operand = Simple(str); //считываем первый операнд
+        s = ((strchr(arr1, str[i])) - arr1); //находим номер операции в arr1
         i++;
-        if (str[i] < '0' && str[i] > 9 && str[i] != '-')
+        if (str[i] < '0' && str[i] > 9 && str[i] != '-') //проверка на посторонний знак
             s = -1;
         else
         {
-            if (str[i] == '0')
-                operand2 = 0;
-            else
+            if (str[i] == '-')
             {
-                if (str[i] == '-')
-                {
-                    i++;
-                    minus = 1;
-                }
-                operand2 = Simple(str);
-                if (g == 0)
-                    s = -2;
-                if (minus)
-                    operand2 *= -1;
+                i++;
+                operand2=Simple(str)*-1;
             }
+            else if (str[0] >= '0' && str[0] <= '9')
+                operand2=Simple(str);
+            else
+                s = -2;
         }
+        if(str[i] != '\0' ) //проверка на конец строки после выполнения вычитания отцриательного второго опренада из результата
+            s = -2;
         switch(s)
         {
             case 0:
@@ -104,38 +95,63 @@ void Calc(void)
             printf("result = %lg", result);
         
     }
-    else if (str[0] == '+' || str[0] == '-' || str[0] == '/' || str[0] == '*' || str[0] == '^')
+    else if (str[0] == '+' || str[0] == '-' || str[0] == '/' || str[0] == '*' || str[0] == '^') //если работает с результатом или первый операнд отрицательный
     {
-        if (str[1] >= '0' && str[1] <= '9')
+        i++;
+        if (str[0] == '-' && str[i] == '-') //проверка на --x;
         {
-            i++;
-            operand = Simple(str);
-            operand *= -1;
+            if (str[i+1] >= '0' && str[i+1] <= '9')
+            {
+                s = 1;
+                operand = Simple(str);
+                if(str[i] != '\0' ) //проверка на конец строки после выполнения вычитания отцриательного второго опренада из результата
+                    s = -1;
+            }
+            else
+                s = -1;
         }
         else
-            operand = result;
-        s = ((strchr(arr1, str[i])) - arr1);
-        g = 0;
-        i++;
-        if (str[i] < '0' && str[i] > 9 && str[i] != '-')
-            s = -1;
-        else
         {
-            if (str[i] == '0')
-                operand2 = 0;
-            else
+            if (str[i] >= '0' && str[i] <= '9')
             {
-                if (str[i] == '-')
+                operand = Simple(str);
+                s = ((strchr(arr1, str[i])) - arr1); // проверяем есть ли знак из arr1 после числа
+                i++;
+                if (s >= 0 && s<= 4) //если работаем с новым первым операндом
                 {
-                    i++;
-                    minus = 1;
+                    if (str[0] == '-')
+                    {
+                        operand *= -1;
+                        if (str[i] == '-' && str[i+1] >= '0' && str[i+1] <= '9')
+                        {
+                            i++;
+                            operand2=Simple(str)*-1;
+                        }
+                        else
+                            operand2=Simple(str);
+                        if(str[i] != '\0' ) //проверка на конец строки после выполнения
+                            s = -1;
+                    }
+                    else
+                        s=-2;
                 }
-                operand2 = Simple(str);
-                if (g == 0)
-                    s = -2;
-                if (minus)
-                    operand2 *= -1;
+                else //если работаем с предыдущим результатом
+                {
+                    operand2 = operand;
+                    operand = result;
+                    s = ((strchr(arr1, str[0])) - arr1);
+                }
             }
+            else if (str[i] == '-' && str[i+1] >= '0' && str[i+1] <= '9')
+            {
+                s = ((strchr(arr1, str[0])) - arr1);
+                i++;
+                operand2=Simple(str)*-1;
+                operand = result;
+
+            }
+            else
+                s = -1;
         }
         switch(s)
         {
@@ -157,6 +173,10 @@ void Calc(void)
             case -1:
                 m = -1;
                 printf("Error input\nYou can use only: + - * / ^\n");
+                break;
+            case -2:
+                m = -1;
+                printf("Error input in first operand\n");
                 break;
         }
         if (m == -1)
@@ -308,8 +328,6 @@ double Simple(char *str)
         if (j != 0)
             x /= pow(10,j);
     }
-    if (x != 0)
-        g = 1;
     return x;
 }
 
