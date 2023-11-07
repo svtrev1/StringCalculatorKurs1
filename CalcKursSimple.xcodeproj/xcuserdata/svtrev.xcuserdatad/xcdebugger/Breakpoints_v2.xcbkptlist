@@ -64,6 +64,36 @@
                   endingLineNumber = "457"
                   offsetFromSymbolStart = "896">
                </Location>
+               <Location
+                  uuid = "8D7D72A9-499C-443A-9D1E-F772B6159F3F - a634c62cc9093d5b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Calc"
+                  moduleName = "CalcKursSimple"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/svtrev/Desktop/CalcKursSimple/CalcKursSimple/main.c"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "99"
+                  endingLineNumber = "99"
+                  offsetFromSymbolStart = "964">
+               </Location>
+               <Location
+                  uuid = "8D7D72A9-499C-443A-9D1E-F772B6159F3F - a634c62cc9093d7c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Calc"
+                  moduleName = "CalcKursSimple"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/svtrev/Desktop/CalcKursSimple/CalcKursSimple/main.c"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "98"
+                  endingLineNumber = "98"
+                  offsetFromSymbolStart = "920">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -71,7 +101,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "B7D155A5-60AA-42B8-9944-E3B9A4500D71"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CalcKursSimple/main.c"
@@ -128,6 +158,70 @@
                   offsetFromSymbolStart = "172">
                </Location>
             </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0F4BC441-8125-4051-944F-2078795E1485"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CalcKursSimple/main.c"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "Calc()"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "0F4BC441-8125-4051-944F-2078795E1485 - a634c62cc9090a67"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Calc"
+                  moduleName = "CalcKursSimple"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/svtrev/Desktop/CalcKursSimple/CalcKursSimple/main.c"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "199"
+                  endingLineNumber = "199"
+                  offsetFromSymbolStart = "2400">
+               </Location>
+               <Location
+                  uuid = "0F4BC441-8125-4051-944F-2078795E1485 - a634c62cc9090a25"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Calc"
+                  moduleName = "CalcKursSimple"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/svtrev/Desktop/CalcKursSimple/CalcKursSimple/main.c"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "201"
+                  endingLineNumber = "201"
+                  offsetFromSymbolStart = "2448">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "7F329F44-153A-4397-95ED-143494642782"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CalcKursSimple/main.c"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
+            landmarkName = "Calc()"
+            landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
